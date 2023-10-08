@@ -1,0 +1,30 @@
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  - npm install
+  - cp .env.example .env  # Copy the .env.example file to .env
+
+linting:
+  stage: test
+  script:
+    - npm run lint
+    - npm run format
+
+unit_tests:
+  stage: test
+  script:
+    - npm test
+
+deploy_production:
+  stage: deploy
+  only:
+    - master  # Deploy only when changes are pushed to the master branch
+  script:
+    - echo "Deploying to Production"
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -H $EC2_PROD_INSTANCE_IP >> ~/.ssh/known_hosts
+    - rsync -r --quiet --exclude='.git/' --exclude='node_modules/' . $SSH_USER@$EC2_PROD_INSTANCE_IP:$APP_PATH
+    - ssh $SSH_USER@$EC2_PROD_INSTANCE_IP "cd $APP_PATH && npm install && pm2 restart $APP_NAME"
