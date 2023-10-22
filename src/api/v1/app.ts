@@ -49,7 +49,7 @@ app.use(
 app.get('/test', (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({
     succcess: true,
-    message: 'API is working',
+    message: 'API is working...',
   });
 });
 
