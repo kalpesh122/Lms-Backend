@@ -2,7 +2,7 @@ name: LMS-CICD
 
 on:
   push:
-    branches: [ main ]
+    branches: [ dev ]
 
 jobs:
   build-and-deploy:
@@ -40,13 +40,13 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: nodejs-app-task-definition.json 
-          container-name: nodejs-app
+          task-definition: Lms-Backend-task-definitions.json 
+          container-name: Lms-Prod
           image: ${{ steps.build-image.outputs.image }}    
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: nodejs-app-service
-          cluster: DevCluster
+          service: Lms-Service
+          cluster: Lms-Cluster
           wait-for-service-stability: true    
