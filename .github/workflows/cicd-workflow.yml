@@ -47,6 +47,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: Lms-Service
+          service: lms-service
           cluster: Lms-Cluster
           wait-for-service-stability: true    
