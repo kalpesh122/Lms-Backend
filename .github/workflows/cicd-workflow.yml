@@ -27,7 +27,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
-          REPOSITORY: Lms-Backend
+          REPOSITORY: lms-backend
         run: |
           # Build a docker container and
           # push it to ECR so that it can
