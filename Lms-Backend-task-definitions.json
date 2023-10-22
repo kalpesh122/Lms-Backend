@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:071964790194:task-definition/Lms-Cluster-task:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:071964790194:task-definition/Lms-Cluster-task:7",
     "containerDefinitions": [
         {
             "name": "Lms-Cluster",
-            "image": "071964790194.dkr.ecr.us-east-1.amazonaws.com/lms-prod",
+            "image": "071964790194.dkr.ecr.us-east-1.amazonaws.com/lms-prod:0fb5ecd1f4961bcbe156cf1b1dc28b593a534245",
             "cpu": 2048,
             "memory": 3072,
             "memoryReservation": 1024,
@@ -18,10 +18,8 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -37,7 +35,7 @@
     "family": "Lms-Cluster-task",
     "executionRoleArn": "arn:aws:iam::071964790194:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 7,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -83,7 +81,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-10-08T10:52:08.172Z",
+    "registeredAt": "2023-10-22T14:08:50.887Z",
     "registeredBy": "arn:aws:iam::071964790194:root",
     "tags": []
 }
