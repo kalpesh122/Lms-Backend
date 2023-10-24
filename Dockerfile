@@ -1,4 +1,4 @@
-FROM node:16 As Production
+FROM node:18 As Production
 
 ENV NODE_ENV=production
 
