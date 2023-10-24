@@ -4,16 +4,15 @@
   "description": "",
   "type": "commonjs",
   "main": "build/server.js",
-  "engines": {
-    "node": "18.x"
-  },
+  
   "scripts": {
     "start": "pm2 start --interpreter ts-node-dev --name LMS-Backend src/api/v1/server.ts",
     "dev": "ts-node-dev src/api/v1/server.ts",
-    "prod": "./node_modules/.bin/ts-node  src/api/v1/server.ts",
+    "prod": "node build/server.js",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "backup": "ts-node src/scripts/backup/aws_s3.ts"
+    "backup": "ts-node src/scripts/backup/aws_s3.ts",
+    "build":"tsc"
   },
   "author": "Kalpesh mali",
   "license": "ISC",
