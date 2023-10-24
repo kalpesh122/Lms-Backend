@@ -1,15 +1,15 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:071964790194:task-definition/Lms-Cluster-task:7",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:071964790194:task-definition/lms-cluster-task-definition:1",
     "containerDefinitions": [
         {
-            "name": "Lms-Cluster",
-            "image": "071964790194.dkr.ecr.us-east-1.amazonaws.com/lms-prod:0fb5ecd1f4961bcbe156cf1b1dc28b593a534245",
+            "name": "lms-container",
+            "image": "071964790194.dkr.ecr.us-east-1.amazonaws.com/lms-prod",
             "cpu": 2048,
-            "memory": 3072,
-            "memoryReservation": 1024,
+            "memory": 6144,
+            "memoryReservation": 2048,
             "portMappings": [
                 {
-                    "name": "lms-cluster-8000-tcp",
+                    "name": "lms-container-8000-tcp",
                     "containerPort": 8000,
                     "hostPort": 8000,
                     "protocol": "tcp",
@@ -18,13 +18,15 @@
             ],
             "essential": true,
             "environment": [],
+            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
+            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/Lms-Cluster-task",
+                    "awslogs-group": "/ecs/lms-cluster-task-definition",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
                 },
@@ -32,10 +34,10 @@
             }
         }
     ],
-    "family": "Lms-Cluster-task",
+    "family": "lms-cluster-task-definition",
     "executionRoleArn": "arn:aws:iam::071964790194:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 7,
+    "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -81,7 +83,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-10-22T14:08:50.887Z",
+    "registeredAt": "2023-10-24T12:38:35.906Z",
     "registeredBy": "arn:aws:iam::071964790194:root",
     "tags": []
 }
