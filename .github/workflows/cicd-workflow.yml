@@ -40,7 +40,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: Lms-Backend-task-definitions.json 
+          task-definition: lms-cluster-task-definition.json 
           container-name: lms-container
           image: ${{ steps.build-image.outputs.image }}    
       - name: Deploy Amazon ECS task definition
