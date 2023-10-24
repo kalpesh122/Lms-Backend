@@ -10,7 +10,7 @@
   "scripts": {
     "start": "pm2 start --interpreter ts-node-dev --name LMS-Backend src/api/v1/server.ts",
     "dev": "ts-node-dev src/api/v1/server.ts",
-    "prod": "pm2 start --interpreter ./node_modules/.bin/ts-node --name LMS-Backend src/api/v1/server.ts",
+    "prod": "./node_modules/.bin/ts-node  src/api/v1/server.ts",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "backup": "ts-node src/scripts/backup/aws_s3.ts"
