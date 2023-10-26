@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "typeRoots": ["./src/api/v1/@types", "./node_modules/@types"],
+    "types": ["nodemailer"],
 
     /* Visit https://aka.ms/tsconfig to read more about this file */
 

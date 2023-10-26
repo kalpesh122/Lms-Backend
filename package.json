@@ -1,10 +1,12 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lms-Primary-Instance",
   "type": "commonjs",
   "main": "build/server.js",
-  
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "start": "pm2 start --interpreter ts-node-dev --name LMS-Backend src/api/v1/server.ts",
     "dev": "ts-node-dev src/api/v1/server.ts",
@@ -12,7 +14,7 @@
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "backup": "ts-node src/scripts/backup/aws_s3.ts",
-    "build":"tsc"
+    "build": "tsc"
   },
   "author": "Kalpesh mali",
   "license": "ISC",
@@ -20,10 +22,14 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.13",
+    "@types/ejs": "^3.1.4",
     "@types/express": "^4.17.17",
-    "@types/node": "^20.4.0",
+    "@types/node": "^18.0.0",
     "@types/socket.io": "^3.0.2",
     "@types/validator": "^13.7.17",
+    "@types/node-cron": "^3.0.8",
+    "@types/jsonwebtoken": "^9.0.4",
+    "@types/nodemailer": "^6.4.9",
     "aws-sdk": "^2.1467.0",
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
@@ -44,14 +50,14 @@
     "redis-cli": "^2.1.2",
     "socket.io": "^4.7.2",
     "stripe": "^13.3.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
     "@types/bcrypt": "^5.0.0",
     "@types/compression": "^1.7.2",
     "@types/cors": "^2.8.13",
-    "@types/ejs": "^3.1.2",
     "@types/express": "^4.17.17",
     "@types/jsonwebtoken": "^9.0.4",
     "@types/morgan": "^1.9.4",
@@ -68,7 +74,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
     "prettier": "^2.8.8",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.1.6"
+    "ts-node-dev": "^2.0.0"
   }
 }
