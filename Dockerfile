@@ -1,20 +1,26 @@
-FROM node:18 As Production
+FROM node:16-alpine as development
 
-ENV NODE_ENV=production
+WORKDIR /usr/src/app
 
-WORKDIR /user/src/app
+COPY package*.json .
 
-COPY package.json .
-COPY package-lock.json .
+RUN npm install
 
 COPY . .
 
-RUN npm install 
-RUN npm install typescript -g
 RUN npm run build
 
-# Expose the port that your application is running on
-EXPOSE 8000
+FROM node:16-alpine as production
 
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
 
-CMD ["npm","run","prod"]
+WORKDIR /usr/src/app
+
+COPY package*.json .
+
+RUN npm ci --only=production
+
+COPY --from=development /usr/src/app/build ./build
+
+CMD ["node", "build/server.js"]

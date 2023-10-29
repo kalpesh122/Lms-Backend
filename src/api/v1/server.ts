@@ -3,9 +3,11 @@ import http from 'http';
 import connectDB from './utils/db';
 import { initSocketServer } from './socketServer';
 import { app } from './app';
-require('dotenv').config();
+import path from 'path';
+import dotenv from 'dotenv';
 const server = http.createServer(app);
 
+dotenv.config({path:'../../config/api/config.env'});
 
 // cloudinary config
 cloudinary.config({
