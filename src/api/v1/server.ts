@@ -7,7 +7,16 @@ import path from 'path';
 import dotenv from 'dotenv';
 const server = http.createServer(app);
 
-dotenv.config({path:'../../config/api/config.env'});
+dotenv.config({path:`${__dirname}/../../config/api/config.env`});
+
+// variables 
+const dbUrl: string = process.env.DB_URL || '';
+const Port:string = process.env.PORT || '8000';
+const REDIS_URL:string = process.env.REDIS_URL || '';
+
+
+
+
 
 // cloudinary config
 cloudinary.config({
@@ -19,7 +28,7 @@ cloudinary.config({
 initSocketServer(server);
 
 // create server
-server.listen(process.env.PORT, () => {
-  console.log(`Server is connected with port ${process.env.PORT}`);
-  connectDB();
+server.listen(Port, () => {
+  console.log(`Server is connected with port ${Port}`);
+  connectDB(dbUrl);
 });

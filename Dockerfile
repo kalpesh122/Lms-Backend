@@ -23,4 +23,4 @@ RUN npm ci --only=production
 
 COPY --from=development /usr/src/app/build ./build
 
-CMD ["node", "build/server.js"]
+CMD ["node", "build/api/v1/server.js"]

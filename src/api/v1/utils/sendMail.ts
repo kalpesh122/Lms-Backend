@@ -1,8 +1,11 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
 import * as nodemailer from 'nodemailer';
 
 import ejs from 'ejs';
 import path from 'path';
+
+
+dotenv.config({path:`${__dirname}/../../../config/api/config.env`});
 
 interface EmailOptions {
   email: string;

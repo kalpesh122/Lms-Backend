@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
-require('dotenv').config();
 
-const dbUrl: string = process.env.DB_URL || '';
 
-const connectDB = async () => {
+const connectDB = async (dbUrl:string) => {
   try {
     await mongoose.connect(dbUrl).then((data: any) => {
       console.log(`Database connected with ${data.connection.host}`);
