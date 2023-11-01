@@ -6,15 +6,11 @@ import { app } from './app';
 import dotenv from 'dotenv';
 const server = http.createServer(app);
 
-dotenv.config({path:`${__dirname}/../../config/api/config.env`});
+dotenv.config({ path: `${__dirname}/../../config/api/config.env` });
 
-// variables 
+// variables
 const dbUrl: string = process.env.DB_URL || '';
-const Port:string = process.env.PORT || '8000';
-
-
-
-
+const Port: string = process.env.PORT || '8000';
 
 // cloudinary config
 cloudinary.config({

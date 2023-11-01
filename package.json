@@ -15,7 +15,7 @@
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "backup": "ts-node src/scripts/backup/aws_s3.ts",
     "build": "rimraf ./build && tsc && npm run copy-config",
-    "copy-config":"cp -r src/config build/"
+    "copy-config": "cp -r src/config build/"
   },
   "author": "Kalpesh mali",
   "license": "ISC",
@@ -41,6 +41,7 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-rate-limit": "^6.10.0",
+    "helmet-csp": "^3.4.0",
     "ioredis": "^5.3.2",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.1",

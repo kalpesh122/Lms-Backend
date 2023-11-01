@@ -3,8 +3,7 @@ import { Response } from 'express';
 import { IUser } from '../models/user.model';
 import { redis } from './redis';
 
-dotenv.config({path:`${__dirname}/../../../config/api/config.env`});
-
+dotenv.config({ path: `${__dirname}/../../../config/api/config.env` });
 
 interface ITokenOptions {
   expires: Date;
