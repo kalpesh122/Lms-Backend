@@ -1,7 +1,10 @@
-require('dotenv').config();
-import nodemailer, { Transporter } from 'nodemailer';
+import dotenv from 'dotenv';
+import * as nodemailer from 'nodemailer';
+
 import ejs from 'ejs';
 import path from 'path';
+
+dotenv.config({ path: `${__dirname}/../../../config/api/config.env` });
 
 interface EmailOptions {
   email: string;
@@ -11,7 +14,7 @@ interface EmailOptions {
 }
 
 const sendMail = async (options: EmailOptions): Promise<void> => {
-  const transporter: Transporter = nodemailer.createTransport({
+  const transporter: nodemailer.Transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT || '587'),
     service: process.env.SMTP_SERVICE,

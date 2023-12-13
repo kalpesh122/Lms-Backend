@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lms-Primary-Instance",
   "type": "commonjs",
   "main": "build/server.js",
   "engines": {
@@ -10,10 +10,12 @@
   "scripts": {
     "start": "pm2 start --interpreter ts-node-dev --name LMS-Backend src/api/v1/server.ts",
     "dev": "ts-node-dev src/api/v1/server.ts",
-    "prod": "pm2 start --interpreter ./node_modules/.bin/ts-node --name LMS-Backend src/api/v1/server.ts",
+    "prod": "node build/api/v1/server.js",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "backup": "ts-node src/scripts/backup/aws_s3.ts"
+    "backup": "ts-node src/scripts/backup/aws_s3.ts",
+    "build": "rimraf ./build && tsc && npm run copy-config",
+    "copy-config": "cp -r src/config build/"
   },
   "author": "Kalpesh mali",
   "license": "ISC",
@@ -21,9 +23,12 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.13",
+    "@types/ejs": "^3.1.4",
     "@types/express": "^4.17.17",
-    "@types/jsonwebtoken": "^9.0.2",
-    "@types/node": "^20.4.0",
+    "@types/jsonwebtoken": "^9.0.4",
+    "@types/node": "^18.0.0",
+    "@types/node-cron": "^3.0.8",
+    "@types/nodemailer": "^6.4.9",
     "@types/socket.io": "^3.0.2",
     "@types/validator": "^13.7.17",
     "aws-sdk": "^2.1467.0",
@@ -36,6 +41,7 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-rate-limit": "^6.10.0",
+    "helmet-csp": "^3.4.0",
     "ioredis": "^5.3.2",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.1",
@@ -44,18 +50,19 @@
     "pm2": "^5.3.0",
     "redis": "^4.6.8",
     "redis-cli": "^2.1.2",
+    "rimraf": "^5.0.5",
     "socket.io": "^4.7.2",
     "stripe": "^13.3.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
     "@types/bcrypt": "^5.0.0",
     "@types/compression": "^1.7.2",
     "@types/cors": "^2.8.13",
-    "@types/ejs": "^3.1.2",
     "@types/express": "^4.17.17",
-    "@types/jsonwebtoken": "^9.0.2",
+    "@types/jsonwebtoken": "^9.0.4",
     "@types/morgan": "^1.9.4",
     "@types/node": "^20.2.1",
     "@types/node-cron": "^3.0.8",
@@ -70,7 +77,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
     "prettier": "^2.8.8",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.1.6"
+    "ts-node-dev": "^2.0.0"
   }
 }

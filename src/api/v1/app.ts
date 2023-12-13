@@ -11,6 +11,7 @@ import notificationRouter from './routes/notification.route';
 import analyticsRouter from './routes/analytics.route';
 import layoutRouter from './routes/layout.route';
 import { rateLimit } from 'express-rate-limit';
+import csp from 'helmet-csp';
 
 // body parser
 app.use(express.json({ limit: '50mb' }));
@@ -48,8 +49,8 @@ app.use(
 // testing api
 app.get('/test', (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({
-    succcess: true,
-    message: 'API is working',
+    success: true,
+    message: 'API is working...',
   });
 });
 
@@ -62,4 +63,18 @@ app.all('*', (req: Request, res: Response, next: NextFunction) => {
 
 // middleware calls
 app.use(limiter);
+
+app.use(
+  csp({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", 'https://lms-frontend-liart.vercel.app', 'http://100.25.119.63:8000'],
+      styleSrc: ["'self'", 'https://lms-frontend-liart.vercel.app', 'http://100.25.119.63:8000'],
+      imgSrc: ["'self'", 'data:', 'https://lms-frontend-liart.vercel.app', 'http://100.25.119.63:8000'],
+      mediaSrc: ['https://lms-frontend-liart.vercel.app', 'http://100.25.119.63:8000'],
+      // Add other directives as needed
+    },
+  })
+);
+
 app.use(ErrorMiddleware);
